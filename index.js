@@ -1,8 +1,7 @@
-import express from 'express';
-import dotenv from 'dotenv';
-// Configuration to read our enviroment variables
-dotenv.config();
-import grades from './routes/grades.mjs'
+require('dotenv').config();
+const express = require('express');
+
+const gradesRouter = require('./routes/grades.js')
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -11,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // Grades Routes
-app.use('/api/grades', grades)
+app.use('/api/grades', gradesRouter)
 
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to the Grades API.</h1>');
